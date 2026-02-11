@@ -1,14 +1,333 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="archi-confluence-poc" id="id-558f86caab4c43ceb94d5c75bd087955" version="5.0.0">
   <folder name="Strategy" id="id-4dc0a02c94c64fddaa2d27d7f52cb755" type="strategy"/>
-  <folder name="Business" id="id-34ab778e36d6450fa57a827f40f997b4" type="business"/>
-  <folder name="Application" id="id-2e077d5f332e4e7b8a3bd0c3be089fe5" type="application"/>
-  <folder name="Technology &amp; Physical" id="id-2f62cbe5893140be8733c55b19666f55" type="technology"/>
+  <folder name="Business" id="id-34ab778e36d6450fa57a827f40f997b4" type="business">
+    <element xsi:type="archimate:BusinessActor" name="Payment Systems Sites" id="id-46a49cafe778418489b9cd60d4940ab9"/>
+  </folder>
+  <folder name="Application" id="id-2e077d5f332e4e7b8a3bd0c3be089fe5" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="PanbetAPI" id="id-b752b57d16c04c3599a699648a15547f" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/PanbetAPI"/>
+      <property key="os" value="Lin"/>
+      <property key="dc" value="COM, CO.UK ES IT DK BY DK IT RU"/>
+      <property key="docker.enable" value="(question)"/>
+      <property key="art" value="Sport"/>
+      <property key="stack" value="java"/>
+      <property key="criticality" value="1A"/>
+      <property key="passport_jira_url" value="https://jira.mara.local/browse/ITSMC-653"/>
+      <property key="availability-mode" value="1"/>
+      <property key="monitoring-classification" value="I"/>
+      <property key="display-emoji" value="🐧🖥️🖥️🖥️🚨🚨"/>
+      <property key="Repository" value="http://git.mara.local/projects/PAN/repos/panbet/browse/panbetapi-parent"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Routing-service" id="id-2b6d9ec8b030446c95ac0e86ac1f7eda" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <documentation>сервис, который согласно настраиваемым правилам выбирает сервис, который будет обрабатывать транзакцию.</documentation>
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/Routing-service"/>
+      <property key="art" value="Payments"/>
+      <property key="os" value="Lin"/>
+      <property key="criticality" value="3A"/>
+      <property key="dc" value="PCI-DSS, COM, CO.UK, DK, BY, RU, ES"/>
+      <property key="paysys.integration" value="0"/>
+      <property key="Repository" value="http://git.mbet.spb.ru/projects/PAYMENT/repos/transaction-routing-service/browse"/>
+      <property key="Build" value="http://build.mara.local/browse/PAYSYS-TRANSACTIONROUTINGSERVICE"/>
+      <property key="Artifactory" value="http://artifactory.mara.local/artifactory/libs-release-local/com/panbet/payment/routing-service/"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="APP" id="id-215dd853cecd4b96aec23f7152026dac" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/APP"/>
+      <property key="art" value="Sport"/>
+      <property key="os" value="Lin"/>
+      <property key="dc" value="COM CO.UK ES IT DK BY DK IT RU"/>
+      <property key="docker.enable" value="1"/>
+      <property key="stack" value="java"/>
+      <property key="criticality" value="1A"/>
+      <property key="swagger_ui_url" value="http://app.knk.local:8080/panbetserver/swagger-ui/index.html"/>
+      <property key="rest_api_introspection_url" value="http://app.knk.local:8080/panbetserver/v3/api-docs/swagger-config"/>
+      <property key="passport_jira_url" value="https://jira.mara.local/browse/ITSMC-38"/>
+      <property key="availability-mode" value="3"/>
+      <property key="monitoring-classification" value="I"/>
+      <property key="display-emoji" value="🐧🖥️🖐️🖥️🚨🚨💾"/>
+      <property key="Repository" value="https://git.mara.local/projects/PAN/repos/panbet/browse"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Alfa-bank-service" id="id-1e155729d0474f7e9271f820bab3d104" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <documentation>Сервис, обрабатывающий платежи Alfa Bank</documentation>
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/Alfa-bank-service"/>
+      <property key="art" value="Payments"/>
+      <property key="os" value="Lin"/>
+      <property key="criticality" value="3A"/>
+      <property key="dc" value="BY"/>
+      <property key="paysys.integration" value="1"/>
+      <property key="Repository" value="https://git.mara.local/projects/PAYMENT/repos/alfa-bank-service/browse"/>
+      <property key="Build" value="http://build.mara.local/browse/PAYSYS-ALFABANKSERVICE"/>
+      <property key="Artifactory" value="http://artifactory.mara.local/artifactory/libs-release-local/com/panbet/payment/alfa-bank-service/"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="BlackRabbit-service" id="id-ab9eae94cde6466ba3ebb08ec501718b" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <documentation>Сервис, предназначенный для работы с удаленной платежной системой BlackRabbit, инкапсулирует в себе протокол взаимодействия</documentation>
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/BlackRabbit-service"/>
+      <property key="art" value="Payments"/>
+      <property key="os" value="Lin"/>
+      <property key="criticality" value="2A"/>
+      <property key="dc" value="COM"/>
+      <property key="paysys.integration" value="1"/>
+      <property key="Repository" value="https://git.mara.local/projects/PAYMENT/repos/blackrabbit-service/browse"/>
+      <property key="Build" value="https://build.mara.local/browse/PAYSYS-BLACKRABBITSERVICE"/>
+      <property key="Artifactory" value="https://artifactory.mara.local/artifactory/libs-release-local/com/panbet/payment/blackrabbit-service/"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Cryptopay-service" id="id-032547f8b0d24240bec30fa57ea391bc" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <documentation>Сервис, предназначенный для работы с удаленной платежной системой Cryptopay, инкапсулирует в себе протокол взаимодействия.</documentation>
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/Cryptopay-service"/>
+      <property key="art" value="Payments"/>
+      <property key="os" value="Lin"/>
+      <property key="criticality" value="3A"/>
+      <property key="dc" value="COM"/>
+      <property key="paysys.integration" value="1"/>
+      <property key="Repository" value="http://git.mara.local/projects/PAYMENT/repos/cryptopayservice/browse"/>
+      <property key="Build" value="http://build.mara.local/browse/PAYSYS-CRYPTOPAYSERVICE"/>
+      <property key="Artifactory" value="http://artifactory.mhd.local/artifactory/libs-release-local/com/panbet/payment/cryptopay-service/"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Erip-service" id="id-e7ba7459a14841f19b4b6b90678062f5" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <documentation>Принимает запросы от удаленной платежной системы &quot;ЕРИП&quot;, анализирует, логгирует и передает информацию на Сервер.</documentation>
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/Erip-service"/>
+      <property key="art" value="Payments"/>
+      <property key="os" value="Lin"/>
+      <property key="criticality" value="2A"/>
+      <property key="dc" value="BY"/>
+      <property key="paysys.integration" value="1"/>
+      <property key="Repository" value="https://git.mara.local/projects/PAYMENT/repos/erip-service/browse"/>
+      <property key="Build" value="http://build.mara.local/chain/viewChain.action?planKey=PAYSYS-ERIPSERVICE"/>
+      <property key="Artifactory" value="http://artifactory.mara.local/artifactory/libs-release-local/com/panbet/payment/erip-service/"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Luxon-service" id="id-a36355e892c14f1b8385bbd4c85e9368" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <documentation>Cервис, обрабатывающий платежи Luxon</documentation>
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/Luxon-service"/>
+      <property key="art" value="Payments"/>
+      <property key="os" value="Lin"/>
+      <property key="criticality" value="3A"/>
+      <property key="dc" value="COM"/>
+      <property key="paysys.integration" value="1"/>
+      <property key="Repository" value="https://git.mara.local/projects/PAYMENT/repos/luxon-service/browse"/>
+      <property key="Build" value="http://build.mara.local/browse/PAYSYS-LUXONSERVICE"/>
+      <property key="Artifactory" value="http://artifactory.mara.local/artifactory/libs-release-local/com/panbet/payment/luxon-service/"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Profee-service" id="id-1352c74dd4c54e07b14ece58e2ed761e" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <documentation>Сервис предназначен для работы с платежным шлюзом ProFee (банковские карты, Qiwi)</documentation>
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/Profee-service"/>
+      <property key="art" value="Payments"/>
+      <property key="os" value="Lin"/>
+      <property key="criticality" value="3А"/>
+      <property key="dc" value="COM"/>
+      <property key="paysys.integration" value="1"/>
+      <property key="Repository" value="http://git.mara.local/projects/PAYMENT/repos/profee-service/browse"/>
+      <property key="Build" value="http://build.mara.local/browse/PAYSYS-PROFEESERVICE"/>
+      <property key="Artifactory" value="http://artifactory.mara.local/artifactory/libs-release-local/com/panbet/payment/profee/profee-service/"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Payment-availability-service" id="id-875cc53229ee4dd2840d04b11976b812" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+      <documentation>Cервис реализует логику определения доступности платежных систем для игрока</documentation>
+      <property key="passport_url" value="https://cfl.mara.local/display/SRV/Payment-availability-service"/>
+      <property key="art" value="Payments"/>
+      <property key="os" value="Lin"/>
+      <property key="criticality" value="2А"/>
+      <property key="dc" value="COM, CO.UK, ES, DK, BY, RU"/>
+      <property key="paysys.integration" value="0"/>
+      <property key="Repository" value="http://git.mara.local/projects/PAYMENT/repos/payment-availability-service/browse"/>
+      <property key="Build" value="http://build.mara.local/browse/PAYSYS-PAYMENTAVAILABILITYSERVICE"/>
+      <property key="Artifactory" value="http://artifactory.mara.local/artifactory/libs-release-local/com/panbet/payment/payment-availability-service/"/>
+    </element>
+  </folder>
+  <folder name="Technology &amp; Physical" id="id-2f62cbe5893140be8733c55b19666f55" type="technology">
+    <element xsi:type="archimate:Node" name="Panbet DB" id="id-82d2d10d25f44326b2037e33839f8216" profiles="id-14dee14f7e6841419d1ad6eb8d65e91c">
+      <documentation>Главная база аппа</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="Routing-Service DB" id="id-ba91e676a1434046b3abe3c260edfcfe" profiles="id-aa8d1faefef64bc9be21c40db62558ed"/>
+    <element xsi:type="archimate:Node" name="pg-Alfa-Bank-Service" id="id-1a695082a1dc44a18cc837a09caafb45" profiles="id-aa8d1faefef64bc9be21c40db62558ed">
+      <property key="host_name" value="pg-node-by.mns.local"/>
+      <property key="db_size" value="48165535"/>
+      <property key="size(Mb)" value="45.9"/>
+    </element>
+    <element xsi:type="archimate:Node" name="pg-blackrabbit-service" id="id-1b84ca6ea1614a1aa498bfc16acfd3d3" profiles="id-aa8d1faefef64bc9be21c40db62558ed">
+      <property key="host_name" value="pg-node.knk.local"/>
+      <property key="db_size" value="99619487"/>
+      <property key="size(Mb)" value="95"/>
+    </element>
+    <element xsi:type="archimate:Node" name="pg-Cryptopay-Service" id="id-df2671e694374a08b4328ae96786c2dd" profiles="id-aa8d1faefef64bc9be21c40db62558ed">
+      <property key="host_name" value="pg-node.knk.local"/>
+      <property key="db_size" value="535769759"/>
+      <property key="size(Mb)" value="510.9"/>
+    </element>
+    <element xsi:type="archimate:Node" name="pg-erip-service" id="id-736ea0cd4ffc490fb576cd50ab351d4a" profiles="id-aa8d1faefef64bc9be21c40db62558ed">
+      <property key="host_name" value="pg-node-by.mns.local"/>
+      <property key="db_size" value="2120422047"/>
+      <property key="size(Mb)" value="2022.2"/>
+    </element>
+    <element xsi:type="archimate:Node" name="pg-luxon-service" id="id-537cc7446bb6461490b4c72f1058f25d" profiles="id-aa8d1faefef64bc9be21c40db62558ed">
+      <property key="host_name" value="pg-node.knk.local"/>
+      <property key="db_size" value="11039391"/>
+      <property key="size(Mb)" value="10.май"/>
+    </element>
+    <element xsi:type="archimate:Node" name="pg-Profee-service" id="id-a583e5dfa92949ce90abd0106ad5f3d3" profiles="id-aa8d1faefef64bc9be21c40db62558ed">
+      <property key="host_name" value="pg-node.knk.local"/>
+      <property key="db_size" value="19452575"/>
+      <property key="size(Mb)" value="18.июн"/>
+    </element>
+    <element xsi:type="archimate:Node" name="pg-payment-availability-service" id="id-eea3e77cad364368973c9ad8cc3164f4" profiles="id-aa8d1faefef64bc9be21c40db62558ed">
+      <property key="host_name" value="pg-node-dk.ggs.local"/>
+      <property key="db_size" value="10007199"/>
+      <property key="size(Mb)" value="09.май"/>
+    </element>
+  </folder>
   <folder name="Motivation" id="id-1df308fff5264b8f8fa96f027a367c1a" type="motivation"/>
   <folder name="Implementation &amp; Migration" id="id-50b3c4b52d764f0e948822766a066e88" type="implementation_migration"/>
-  <folder name="Other" id="id-27955158e238463e8a2c7dae6f1e33da" type="other"/>
-  <folder name="Relations" id="id-c0533709e5e148938c96c4eb0fb03880" type="relations"/>
+  <folder name="Other" id="id-27955158e238463e8a2c7dae6f1e33da" type="other">
+    <element xsi:type="archimate:Grouping" name="Payment Systems" id="id-99310c2c8daa486b99c09817eba32f77"/>
+  </folder>
+  <folder name="Relations" id="id-c0533709e5e148938c96c4eb0fb03880" type="relations">
+    <element xsi:type="archimate:FlowRelationship" name="Чтение событий из базы" id="id-6215b39d01424671ad578da1f4862975" profiles="id-4ad8e47ff96c4117bc4984f138c9d4e8" source="id-215dd853cecd4b96aec23f7152026dac" target="id-82d2d10d25f44326b2037e33839f8216">
+      <property key="entity" value="Event"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="findPunterById (CP)" id="id-3b2a7130975448a0825f60bcfbdb8d30" profiles="id-366b45ba36b042c6870548d7d87b3e61" source="id-b752b57d16c04c3599a699648a15547f" target="id-215dd853cecd4b96aec23f7152026dac">
+      <property key="BusinessMethodTemplate" value="SessionFindPunterById"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="Сохранение аудита (jdbc)" id="id-fc6aa5e224aa40df9a1b193ee8e684e4" profiles="id-11328161cf254d0a98f5f2e7f0313c4c" source="id-215dd853cecd4b96aec23f7152026dac" target="id-82d2d10d25f44326b2037e33839f8216">
+      <documentation>Через хранимку SAUDIT_INSERT2 делаем вставку записей аудита.</documentation>
+      <property key="table" value="SAUDIT_BASE1"/>
+      <property key="procedure" value="SAUDIT_INSERT2"/>
+      <property key="view" value="SAUDIT"/>
+    </element>
+    <element xsi:type="archimate:ServingRelationship" id="id-848cf93c714948b8ad1e70ff71bd1245" source="id-875cc53229ee4dd2840d04b11976b812" target="id-2b6d9ec8b030446c95ac0e86ac1f7eda"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-b20538f434084d8bae972d4b125a303e" source="id-b752b57d16c04c3599a699648a15547f" target="id-2b6d9ec8b030446c95ac0e86ac1f7eda"/>
+    <element xsi:type="archimate:FlowRelationship" name="Чтение аудита" id="id-98752b15c2ea45edaeada5022c802c58" profiles="id-4ad8e47ff96c4117bc4984f138c9d4e8" source="id-215dd853cecd4b96aec23f7152026dac" target="id-82d2d10d25f44326b2037e33839f8216">
+      <property key="table" value="SAUDIT_PUNTER"/>
+      <property key="table" value="SAUDIT_BASE1"/>
+      <property key="table" value="SAUDIT_OPERATIONS"/>
+      <property key="table" value="SAUDIT_TYPES"/>
+      <property key="table" value="SAUDIT_PUNTER"/>
+      <property key="stored_procedure" value="SAUDIT_PROPERTY_HISTORY5"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" id="id-1d8d69a13bd541d8a3f552226ef30a0a" source="id-ab9eae94cde6466ba3ebb08ec501718b" target="id-1b84ca6ea1614a1aa498bfc16acfd3d3"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-0efc2961b5e34c8ca15b2b435aa5a5fe" source="id-032547f8b0d24240bec30fa57ea391bc" target="id-df2671e694374a08b4328ae96786c2dd"/>
+    <element xsi:type="archimate:FlowRelationship" name="Сохранение события" id="id-46f6ca43b5f7495b9c630dff9398f0bf" profiles="id-11328161cf254d0a98f5f2e7f0313c4c" source="id-215dd853cecd4b96aec23f7152026dac" target="id-82d2d10d25f44326b2037e33839f8216">
+      <property key="entity" value="Event"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" name="Сохранение результатов в деблобизированном виде" id="id-daba25e55cf34bec91f4091dcf19848b" profiles="id-11328161cf254d0a98f5f2e7f0313c4c" source="id-215dd853cecd4b96aec23f7152026dac" target="id-82d2d10d25f44326b2037e33839f8216">
+      <documentation>Обновляются данные в таблицу ER_EVENT_RESULT и связанных таблицах ER_*</documentation>
+      <property key="tablePattern" value="ER_*"/>
+      <property key="table" value="ER_EVENT_RESULT"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" id="id-16da71b98cee4069977da1ae04167963" source="id-875cc53229ee4dd2840d04b11976b812" target="id-eea3e77cad364368973c9ad8cc3164f4"/>
+    <element xsi:type="archimate:FlowRelationship" name="getAccounts (CP)" id="id-76aaf7dcecc64b2d9f7e20183c50844b" profiles="id-366b45ba36b042c6870548d7d87b3e61" source="id-b752b57d16c04c3599a699648a15547f" target="id-215dd853cecd4b96aec23f7152026dac">
+      <property key="BusinessMethodTemplate" value="AccountList"/>
+    </element>
+    <element xsi:type="archimate:ServingRelationship" id="id-c3a25b5993f8470285e7567cf7bdea45" source="id-46a49cafe778418489b9cd60d4940ab9" target="id-99310c2c8daa486b99c09817eba32f77"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-b22ff927ba214cd881130940a464e4f3" source="id-a36355e892c14f1b8385bbd4c85e9368" target="id-537cc7446bb6461490b4c72f1058f25d"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-2385b84912ef4fb48ec97bd506b8d437" source="id-99310c2c8daa486b99c09817eba32f77" target="id-2b6d9ec8b030446c95ac0e86ac1f7eda"/>
+    <element xsi:type="archimate:FlowRelationship" name="findPunterTypeById (CP)" id="id-2dab00cb7f634d6abf19682468643cf0" profiles="id-366b45ba36b042c6870548d7d87b3e61" source="id-b752b57d16c04c3599a699648a15547f" target="id-215dd853cecd4b96aec23f7152026dac">
+      <property key="BusinessMethodTemplate" value="PunterTypeById"/>
+      <property key="protocol" value="CommandProxy"/>
+    </element>
+    <element xsi:type="archimate:FlowRelationship" id="id-c97f90ba775d4807b664becfcdee5a8e" source="id-e7ba7459a14841f19b4b6b90678062f5" target="id-736ea0cd4ffc490fb576cd50ab351d4a"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-98beec0461c44456a19d05a46c84b46b" source="id-2b6d9ec8b030446c95ac0e86ac1f7eda" target="id-99310c2c8daa486b99c09817eba32f77"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-4356515d8a0e402eab29f7c8b1d072cb" source="id-1e155729d0474f7e9271f820bab3d104" target="id-1a695082a1dc44a18cc837a09caafb45"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-b60b4f00f87e4a70a56c644414bd7dff" source="id-1352c74dd4c54e07b14ece58e2ed761e" target="id-a583e5dfa92949ce90abd0106ad5f3d3"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-e819ef4f912743e482b510cdff9eb4dd" source="id-2b6d9ec8b030446c95ac0e86ac1f7eda" target="id-ba91e676a1434046b3abe3c260edfcfe"/>
+    <element xsi:type="archimate:FlowRelationship" name="getCurrencyById (CP)" id="id-87c80a3d94344349b7cadfad40bfca82" profiles="id-366b45ba36b042c6870548d7d87b3e61" source="id-b752b57d16c04c3599a699648a15547f" target="id-215dd853cecd4b96aec23f7152026dac">
+      <property key="BusinessMethodTemplate" value="DictionaryGetCurrencyById"/>
+      <property key="technology" value="CP"/>
+    </element>
+  </folder>
   <folder name="Views" id="id-1a61970973834bd4bb509afe4cbf47a2" type="diagrams">
     <element xsi:type="archimate:ArchimateDiagramModel" name="Default View" id="id-bbfd8d8051a8408e87eafa88608d37ca"/>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Routing payments group diagram" id="id-13ed7cfa757b40708d9f25ebf3e77717">
+      <child xsi:type="archimate:DiagramObject" id="id-5b64608bad9e4a41abd8f11b3b416850" fillColor="#e5a50a" archimateElement="id-b752b57d16c04c3599a699648a15547f">
+        <bounds x="151" y="437" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-b4d2abe068344774adae4d90be51d074" source="id-5b64608bad9e4a41abd8f11b3b416850" target="id-bd656d289cb640a1a3fd8b8588efdae1" archimateRelationship="id-76aaf7dcecc64b2d9f7e20183c50844b"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-7e2dff6dda824866885435e7307969a3" source="id-5b64608bad9e4a41abd8f11b3b416850" target="id-bd656d289cb640a1a3fd8b8588efdae1" archimateRelationship="id-87c80a3d94344349b7cadfad40bfca82"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-c74e70ab9a5548a0b2b58799d2cdad05" source="id-5b64608bad9e4a41abd8f11b3b416850" target="id-0e6f13a4c27e48d3bcf0e298e4560194" archimateRelationship="id-b20538f434084d8bae972d4b125a303e"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-e835d0657d324d68b3215c97ba50b88f" source="id-5b64608bad9e4a41abd8f11b3b416850" target="id-bd656d289cb640a1a3fd8b8588efdae1" archimateRelationship="id-2dab00cb7f634d6abf19682468643cf0"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-b97794b08a004752afa5dabe59bcfddc" source="id-5b64608bad9e4a41abd8f11b3b416850" target="id-bd656d289cb640a1a3fd8b8588efdae1" archimateRelationship="id-3b2a7130975448a0825f60bcfbdb8d30"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-0e6f13a4c27e48d3bcf0e298e4560194" targetConnections="id-e0e2e041eb4b49b6a4e6aa7afede1214 id-4a23681b73d34c90a54171bcefffd281 id-c74e70ab9a5548a0b2b58799d2cdad05" archimateElement="id-2b6d9ec8b030446c95ac0e86ac1f7eda">
+        <bounds x="355" y="437" width="120" height="37"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-4c199c960c01413d984050d9bac02b1a" source="id-0e6f13a4c27e48d3bcf0e298e4560194" target="id-24bb9ff712774614a30fac4fe2ef2ca2" archimateRelationship="id-98beec0461c44456a19d05a46c84b46b"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-5914c09803e7491bb3faf296989e4c6d" source="id-0e6f13a4c27e48d3bcf0e298e4560194" target="id-4087bc86f1534445a5293504d3ad900c" archimateRelationship="id-e819ef4f912743e482b510cdff9eb4dd"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-bd656d289cb640a1a3fd8b8588efdae1" targetConnections="id-b4d2abe068344774adae4d90be51d074 id-7e2dff6dda824866885435e7307969a3 id-e835d0657d324d68b3215c97ba50b88f id-b97794b08a004752afa5dabe59bcfddc" fillColor="#f66151" archimateElement="id-215dd853cecd4b96aec23f7152026dac">
+        <bounds x="151" y="317" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-45ecfcb7c21d4d9a919ff58a82622f8c" source="id-bd656d289cb640a1a3fd8b8588efdae1" target="id-58089d119d774377b8c16003353ce92e" archimateRelationship="id-6215b39d01424671ad578da1f4862975"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-b3a26800e37b4200a58cdeae1fdf88f2" source="id-bd656d289cb640a1a3fd8b8588efdae1" target="id-58089d119d774377b8c16003353ce92e" archimateRelationship="id-98752b15c2ea45edaeada5022c802c58"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-c9af92bc472641d7bb9472f98a03f553" source="id-bd656d289cb640a1a3fd8b8588efdae1" target="id-58089d119d774377b8c16003353ce92e" archimateRelationship="id-fc6aa5e224aa40df9a1b193ee8e684e4"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-1dc1be87e6ae4ebaabea25fec956f72c" source="id-bd656d289cb640a1a3fd8b8588efdae1" target="id-58089d119d774377b8c16003353ce92e" archimateRelationship="id-46f6ca43b5f7495b9c630dff9398f0bf"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-ace7f1543d024ea5979f4f33f2b8f03d" source="id-bd656d289cb640a1a3fd8b8588efdae1" target="id-58089d119d774377b8c16003353ce92e" archimateRelationship="id-daba25e55cf34bec91f4091dcf19848b"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-58089d119d774377b8c16003353ce92e" targetConnections="id-45ecfcb7c21d4d9a919ff58a82622f8c id-b3a26800e37b4200a58cdeae1fdf88f2 id-c9af92bc472641d7bb9472f98a03f553 id-1dc1be87e6ae4ebaabea25fec956f72c id-ace7f1543d024ea5979f4f33f2b8f03d" archimateElement="id-82d2d10d25f44326b2037e33839f8216">
+        <bounds x="163" y="89" width="120" height="49"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-4087bc86f1534445a5293504d3ad900c" targetConnections="id-5914c09803e7491bb3faf296989e4c6d" archimateElement="id-ba91e676a1434046b3abe3c260edfcfe">
+        <bounds x="355" y="377" width="120" height="37"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-24bb9ff712774614a30fac4fe2ef2ca2" targetConnections="id-4c199c960c01413d984050d9bac02b1a id-6bf1e6a646f749f5a0006878d9b7574e" textAlignment="1" fillColor="#99c1f1" archimateElement="id-99310c2c8daa486b99c09817eba32f77">
+        <bounds x="619" y="348" width="400" height="282"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-e0e2e041eb4b49b6a4e6aa7afede1214" source="id-24bb9ff712774614a30fac4fe2ef2ca2" target="id-0e6f13a4c27e48d3bcf0e298e4560194" archimateRelationship="id-2385b84912ef4fb48ec97bd506b8d437"/>
+        <child xsi:type="archimate:DiagramObject" id="id-4e5069c0ebd84f9da0e7578e5333bf48" archimateElement="id-1e155729d0474f7e9271f820bab3d104">
+          <bounds x="12" y="24" width="168" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-662562fcaacb46a09650595368992e4a" source="id-4e5069c0ebd84f9da0e7578e5333bf48" target="id-0d27aa8a25e84014a4b6f2fff5ffce78" archimateRelationship="id-4356515d8a0e402eab29f7c8b1d072cb"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-0d27aa8a25e84014a4b6f2fff5ffce78" targetConnections="id-662562fcaacb46a09650595368992e4a" archimateElement="id-1a695082a1dc44a18cc837a09caafb45">
+          <bounds x="216" y="26" width="156" height="21"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-fe3940161e6d4b39a947242758b150f6" archimateElement="id-ab9eae94cde6466ba3ebb08ec501718b">
+          <bounds x="12" y="60" width="168" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-4cd5a3ce05e44cffa58547a3246e3e8c" source="id-fe3940161e6d4b39a947242758b150f6" target="id-c558327936cd406d9b90e0937e3075e5" archimateRelationship="id-1d8d69a13bd541d8a3f552226ef30a0a"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-c558327936cd406d9b90e0937e3075e5" targetConnections="id-4cd5a3ce05e44cffa58547a3246e3e8c" archimateElement="id-1b84ca6ea1614a1aa498bfc16acfd3d3">
+          <bounds x="216" y="60" width="156" height="24"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-78b12cd8ed3e405ca256a6b98655d2e4" archimateElement="id-032547f8b0d24240bec30fa57ea391bc">
+          <bounds x="12" y="96" width="168" height="28"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-e6e6ad4eee304d57bba6507054049f98" source="id-78b12cd8ed3e405ca256a6b98655d2e4" target="id-3856fa0218b64183ab3b2f2da207ef5c" archimateRelationship="id-0efc2961b5e34c8ca15b2b435aa5a5fe"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-3856fa0218b64183ab3b2f2da207ef5c" targetConnections="id-e6e6ad4eee304d57bba6507054049f98" archimateElement="id-df2671e694374a08b4328ae96786c2dd">
+          <bounds x="216" y="96" width="156" height="24"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-c65d20c6955847ae98286b793d716857" archimateElement="id-e7ba7459a14841f19b4b6b90678062f5">
+          <bounds x="12" y="132" width="168" height="24"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ef056b1517904b3590baac39cfe8adde" source="id-c65d20c6955847ae98286b793d716857" target="id-d5300686b7cd4f50be5bdfe8b580f6ec" archimateRelationship="id-c97f90ba775d4807b664becfcdee5a8e"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-d5300686b7cd4f50be5bdfe8b580f6ec" targetConnections="id-ef056b1517904b3590baac39cfe8adde" archimateElement="id-736ea0cd4ffc490fb576cd50ab351d4a">
+          <bounds x="216" y="131" width="156" height="25"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-1c5a1f4faef147e2aca65a9997010f86" archimateElement="id-a36355e892c14f1b8385bbd4c85e9368">
+          <bounds x="14" y="168" width="164" height="25"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-8ccb05ceda8e4a6f81ef9a091fdc0561" source="id-1c5a1f4faef147e2aca65a9997010f86" target="id-d0bddbca1c4648248c57ffb66dbc2b37" archimateRelationship="id-b22ff927ba214cd881130940a464e4f3"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-d0bddbca1c4648248c57ffb66dbc2b37" targetConnections="id-8ccb05ceda8e4a6f81ef9a091fdc0561" archimateElement="id-537cc7446bb6461490b4c72f1058f25d">
+          <bounds x="216" y="169" width="156" height="24"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-7f55b9dc5378420285c07fbfd584b718" archimateElement="id-1352c74dd4c54e07b14ece58e2ed761e">
+          <bounds x="14" y="211" width="164" height="30"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-8d5ae0a919b947758d64d0b95ccedc3f" source="id-7f55b9dc5378420285c07fbfd584b718" target="id-8ac3121e0cc14f6cb1ede04cb80a8da0" archimateRelationship="id-b60b4f00f87e4a70a56c644414bd7dff"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-8ac3121e0cc14f6cb1ede04cb80a8da0" targetConnections="id-8d5ae0a919b947758d64d0b95ccedc3f" archimateElement="id-a583e5dfa92949ce90abd0106ad5f3d3">
+          <bounds x="216" y="211" width="145" height="30"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-3dda01fa4bc8402693ec35c9ec18cc07" archimateElement="id-875cc53229ee4dd2840d04b11976b812">
+        <bounds x="355" y="509" width="195" height="37"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-75e805ee87ed4633999e47e8c336e2ad" source="id-3dda01fa4bc8402693ec35c9ec18cc07" target="id-d6d872b8052e4f87a00c14c2d0d329f9" archimateRelationship="id-16da71b98cee4069977da1ae04167963"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-4a23681b73d34c90a54171bcefffd281" source="id-3dda01fa4bc8402693ec35c9ec18cc07" target="id-0e6f13a4c27e48d3bcf0e298e4560194" archimateRelationship="id-848cf93c714948b8ad1e70ff71bd1245">
+          <bendpoint startX="-25" startY="-42" endX="12" endY="30"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-d6d872b8052e4f87a00c14c2d0d329f9" targetConnections="id-75e805ee87ed4633999e47e8c336e2ad" archimateElement="id-eea3e77cad364368973c9ad8cc3164f4">
+        <bounds x="379" y="569" width="195" height="25"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-e134a88906184c0189d8b0155848ddd6" archimateElement="id-46a49cafe778418489b9cd60d4940ab9">
+        <bounds x="1063" y="437" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-6bf1e6a646f749f5a0006878d9b7574e" source="id-e134a88906184c0189d8b0155848ddd6" target="id-24bb9ff712774614a30fac4fe2ef2ca2" archimateRelationship="id-c3a25b5993f8470285e7567cf7bdea45"/>
+      </child>
+    </element>
   </folder>
+  <profile name="microservice" id="id-2096a42b5ee0487d98fcf6b27593623a" conceptType="ApplicationComponent"/>
+  <profile name="sync" id="id-366b45ba36b042c6870548d7d87b3e61" conceptType="FlowRelationship"/>
+  <profile name="db-read" id="id-4ad8e47ff96c4117bc4984f138c9d4e8" conceptType="FlowRelationship"/>
+  <profile name="db-write" id="id-11328161cf254d0a98f5f2e7f0313c4c" conceptType="FlowRelationship"/>
+  <profile name="oracle" id="id-14dee14f7e6841419d1ad6eb8d65e91c" imagePath="images/_kzhUANv4EfCF6JX66BpB1g.png" conceptType="Node"/>
+  <profile name="postgresql" id="id-aa8d1faefef64bc9be21c40db62558ed" imagePath="images/_CLSBwNwFEfCF6JX66BpB1g.png" conceptType="Node"/>
 </archimate:model>
