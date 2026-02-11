@@ -5,7 +5,7 @@
     <element xsi:type="archimate:BusinessActor" name="Payment Systems Sites" id="id-46a49cafe778418489b9cd60d4940ab9"/>
   </folder>
   <folder name="Application" id="id-2e077d5f332e4e7b8a3bd0c3be089fe5" type="application">
-    <element xsi:type="archimate:ApplicationComponent" name="PanbetAPI" id="id-b752b57d16c04c3599a699648a15547f" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
+    <element xsi:type="archimate:ApplicationComponent" name="API" id="id-b752b57d16c04c3599a699648a15547f" profiles="id-2096a42b5ee0487d98fcf6b27593623a">
       <property key="passport_url" value="https://cfl.mara.local/display/SRV/PanbetAPI"/>
       <property key="os" value="Lin"/>
       <property key="dc" value="COM, CO.UK ES IT DK BY DK IT RU"/>
@@ -133,7 +133,7 @@
     </element>
   </folder>
   <folder name="Technology &amp; Physical" id="id-2f62cbe5893140be8733c55b19666f55" type="technology">
-    <element xsi:type="archimate:Node" name="Panbet DB" id="id-82d2d10d25f44326b2037e33839f8216" profiles="id-14dee14f7e6841419d1ad6eb8d65e91c">
+    <element xsi:type="archimate:Node" name="MainServer DB" id="id-82d2d10d25f44326b2037e33839f8216" profiles="id-14dee14f7e6841419d1ad6eb8d65e91c">
       <documentation>Главная база аппа</documentation>
     </element>
     <element xsi:type="archimate:Node" name="Routing-Service DB" id="id-ba91e676a1434046b3abe3c260edfcfe" profiles="id-aa8d1faefef64bc9be21c40db62558ed"/>
